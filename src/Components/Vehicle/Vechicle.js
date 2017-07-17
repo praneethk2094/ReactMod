@@ -6,8 +6,10 @@ class Vehicle extends Component {
         return (
 
                 <tr>
-                    <Link to="/list">
-                <td >{this.props.vehicleData.make}</td> </Link>
+                    <Link to="list">
+                        <td>{this.props.vehicleData.vin}</td>
+                    </Link>
+                <td >{this.props.vehicleData.make}</td>
                 <td>{this.props.vehicleData.model}</td>
                 <td>{this.props.vehicleData.year}</td>
 

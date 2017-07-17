@@ -7,8 +7,8 @@ import {Table} from 'reactstrap';
 class VehicleList extends Component {
     render() {
         let VehicleItems;
-        if(this.props.Vehicles) {
-            VehicleItems = this.props.Vehicles.map(v => {
+        if(this.props.vehicles) {
+            VehicleItems = this.props.vehicles.map(v => {
                 return(
                    <Vehicle key={v.vin} vehicleData={v}/>
                 )
@@ -16,21 +16,20 @@ class VehicleList extends Component {
         }
         return (
             <div className="VehicleList">
-                <Table striped>
-                    <thead>
-                    <tr>
-                        <th>Make</th>
-                        <th>Model</th>
-                        <th>Year</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-
-                       {VehicleItems}
-
-                    </tbody>
-                </Table>
-
+                <div className="container">
+                    <h1> Vehicles List</h1>
+                    <table className="table table-bordered">
+                        <thead className="thead-inverse">
+                        <tr>
+                            <th>Vin</th>
+                            <th>Make</th>
+                            <th>Model</th>
+                            <th>Year</th>
+                        </tr>
+                        </thead>
+                        <tbody>{VehicleItems}</tbody>
+                    </table>
+                </div>
             </div>
         );
     }
