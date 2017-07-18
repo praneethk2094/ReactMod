@@ -7,6 +7,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 /*import {Router,Route,IndexRoute,Link} from 'react-router';*/
 import {BrowserRouter, Switch, Route} from 'react-router-dom'
 import VehicleApp from './Components/VehicleListApp/VehicleApp';
+import Test from './Components/Views/Test';
 
 ReactDOM.render((
 
@@ -15,7 +16,7 @@ ReactDOM.render((
         <Switch>
             <Route exact path='/' component={App}/>
             {/* both /roster and /roster/:number begin with /roster */}
-            <Route path='/list' component={VehicleApp}/>
+            <Route path='/list/:number' component={Test}/>
 
         </Switch>
     </BrowserRouter>

@@ -19,7 +19,7 @@ class VehicleApp extends Component {
     componentDidMount() {
         var self = this;
         console.log('-->Trigerring XHR');
-        const vehicleURL = "http://localhost:8080/findAll";
+        const vehicleURL = "http://localhost:8080/api/vehicles/find";
         axios.get(vehicleURL)
             .then(function (response) {
                 if (response.data) {
