@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import axios from 'axios';
-import VehicleList from './../VehicleList/VehicleList'
-
+import VehicleList from './../VehicleList/VehicleList';
 
 class VehicleApp extends Component {
 
@@ -10,15 +9,8 @@ class VehicleApp extends Component {
         this.state = {vehicleList: []};
     }
 
-    getInitialState() {
-        return {
-            vehicleList: {}
-        }
-    }
-
     componentDidMount() {
         var self = this;
-        console.log('-->Trigerring XHR');
         const vehicleURL = "http://localhost:8080/findAll";
         axios.get(vehicleURL)
             .then(function (response) {
@@ -27,8 +19,6 @@ class VehicleApp extends Component {
                         vehicleList: response.data
                     })
                 }
-
-
             })
             .catch(function (error) {
                 console.log(error);
@@ -36,12 +26,9 @@ class VehicleApp extends Component {
     }
 
     render() {
-        console.log('-->Mounted in render method');
         return (
             <div className="VehicleApp">
                 <VehicleList vehicles={this.state.vehicleList}/>
-
-
             </div>
         );
     }

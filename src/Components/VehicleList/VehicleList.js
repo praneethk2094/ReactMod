@@ -1,36 +1,39 @@
 import React, {Component} from 'react';
-import Vehicle from './../Vehicle/Vechicle'
-import {Table} from 'reactstrap';
-
-//import {BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table';
+import {BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table';
 
 class VehicleList extends Component {
+
+    constructor(props) {
+        super(props);
+
+        this.options = {
+            sortIndicator: false  // disable sort indicator
+        };
+    }
+
     render() {
-        let VehicleItems;
-        if(this.props.vehicles) {
-            VehicleItems = this.props.vehicles.map(v => {
-                return(
-                   <Vehicle key={v.vin} vehicleData={v}/>
-                )
-            })
+
+        let VehicleItems = this.props.vehicles;
+
+        function showDescription(cell, row) {
+            return cell.description;
         }
+
         return (
-            <div className="VehicleList">
-                <div className="container">
-                    <h1> Vehicles List</h1>
-                    <table className="table table-bordered">
-                        <thead className="thead-inverse">
-                        <tr>
-                            <th>Vin</th>
-                            <th>Make</th>
-                            <th>Model</th>
-                            <th>Year</th>
-                        </tr>
-                        </thead>
-                        <tbody>{VehicleItems}</tbody>
-                    </table>
-                </div>
-            </div>
+
+            <BootstrapTable data={VehicleItems} options={this.options} bordered={true} striped={true}>
+                <TableHeaderColumn width="190" isKey dataField="vin" headerAlign='center' dataAlign='center'>Vehicle
+                    Number</TableHeaderColumn>
+                <TableHeaderColumn width="190" dataField="make" headerAlign='center'
+                                   dataAlign='center'>Make</TableHeaderColumn>
+                <TableHeaderColumn width="190" dataField="model" headerAlign='center'
+                                   dataAlign='center'>Model</TableHeaderColumn>
+                <TableHeaderColumn width="190" dataField="year" headerAlign='center'
+                                   dataAlign='center'>Year</TableHeaderColumn>
+                <TableHeaderColumn width="190" dataField="count" headerAlign='center' dataAlign='center' dataSort>High
+                    Alerts</TableHeaderColumn>
+            </BootstrapTable>
+
         );
     }
 }
