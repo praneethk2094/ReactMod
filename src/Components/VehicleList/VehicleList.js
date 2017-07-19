@@ -7,7 +7,8 @@ class VehicleList extends Component {
         super(props);
 
         this.options = {
-            sortIndicator: false  // disable sort indicator
+            defaultSortName: 'count',
+            defaultSortOrder: 'desc'
         };
     }
 
