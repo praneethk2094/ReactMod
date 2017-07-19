@@ -27,8 +27,6 @@ class VehicleApp extends Component {
                         vehicleList: response.data
                     })
                 }
-
-
             })
             .catch(function (error) {
                 console.log(error);
@@ -37,6 +35,7 @@ class VehicleApp extends Component {
 
     render() {
         console.log('-->Mounted in render method');
+        console.log(this.state.vehicleList);
         return (
             <div className="VehicleApp">
                 <VehicleList vehicles={this.state.vehicleList}/>

@@ -14,7 +14,8 @@ class Tracker extends Component {
                 /*ref={this.mapLoaded.bind(this)}
                onDragEnd={this.mapMoved.bind(this)}*/
                 defaultZoom={this.props.zoom}
-                defaultCenter={this.props.centre}>
+                defaultCenter={this.props.centre}
+            >
                <Polyline
                    path={cordinate}
                    key={Date.now() + Math.random()}
