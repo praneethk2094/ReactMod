@@ -156,22 +156,24 @@ class FusionCharts extends Component {
             console.log('-->Trigerring component did Mount');
             const url = this.props.url.concat("?time=" + nextState.date);
             console.log(url);
-            axios.get(url)
-                .then(function (response) {
-                    if (response.data) {
-                        console.log(response.data);
-                        /* if (nextState.flag) {*/
+            setInterval(function () {
+                axios.get(url)
+                    .then(function (response) {
+                        if (response.data) {
+                            console.log(response.data);
+                            /* if (nextState.flag) {*/
 
-                        self.setState({
-                            vehicleList: response.data,
-                            flag: false,
-                        })
-                        /* }*/
-                    }
-                })
-                .catch(function (error) {
-                    console.log(error);
-                });
+                            self.setState({
+                                vehicleList: response.data,
+                                flag: false,
+                            })
+                            /* }*/
+                        }
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    });
+            }, 3000);
         }
 
     }

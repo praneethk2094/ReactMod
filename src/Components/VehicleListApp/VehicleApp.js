@@ -20,18 +20,20 @@ class VehicleApp extends Component {
         var self = this;
         console.log('-->Trigerring XHR');
         const vehicleURL = "http://localhost:8080/api/vehicles/find";
-        axios.get(vehicleURL)
-            .then(function (response) {
-                if (response.data) {
-                    console.log(response.data);
-                    self.setState({
-                        vehicleList: response.data
-                    })
-                }
-            })
-            .catch(function (error) {
-                console.log(error);
-            });
+        setInterval(function () {
+            axios.get(vehicleURL)
+                .then(function (response) {
+                    if (response.data) {
+                        console.log(response.data);
+                        self.setState({
+                            vehicleList: response.data
+                        })
+                    }
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
+        }, 10000);
     }
 
     render() {

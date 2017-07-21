@@ -20,11 +20,19 @@ class Tracker extends Component {
                 /*ref={this.mapLoaded.bind(this)}
                onDragEnd={this.mapMoved.bind(this)}*/
                 defaultZoom={this.props.zoom}
-                defaultCenter={this.props.center}
+                center={this.props.center}
             >
                 <Polyline
                     path={cordinate}
                     key={Date.now() + Math.random()}
+                    options={{
+                        strokeColor: '#babfc7',
+                        strokeOpacity: 0.28,
+                        strokeWeight: 1,
+                    }}
+                />
+                <Marker
+                    position={this.props.center}
                 />
             </GoogleMap>
 

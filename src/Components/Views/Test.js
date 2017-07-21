@@ -24,27 +24,28 @@ class Test extends Component {
         console.log(VinValue);
         if (VinValue) {
             const veURL = `http://localhost:8080/api/vreads/${VinValue}`;
-            self.setState({
-                URL: veURL
-            })
-            axios.get(veURL)
-                .then(function (response) {
-                    if (response.data) {
 
-                        // console.log("response data", response.data);
-                        response.data.map(v => {
-                            list.push({lat: v.latitude, lng: v.longitude})
-                        })
-                        self.setState({
-                            coords: list,
-                            vehicleData: list[list.length - 1]
-                        })
-                    }
+            setInterval(function () {
+                axios.get(veURL)
+                    .then(function (response) {
+                        if (response.data) {
 
-                })
-                .catch(function (error) {
-                    console.log(error);
-                });
+                            // console.log("response data", response.data);
+                            response.data.map(v => {
+                                list.push({lat: v.latitude, lng: v.longitude})
+                            })
+                            self.setState({
+                                coords: list,
+                                URL: veURL,
+                                vehicleData: list[list.length - 1]
+                            })
+                        }
+
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    });
+            }, 3000);
         }
 
     }
@@ -71,12 +72,12 @@ class Test extends Component {
         return (
             <div>
 
-                {/*<div style={{width: window.innerWidth, height: 400, background: 'red'}}>*/}
+                <div style={{width: window.innerWidth, height: 400, background: 'red'}}>
                 {/*<p> This is test page {this.props.match.params.number}</p>*/}
 
 
-                {/*<Tracker
-                    zoom={2}
+                    <Tracker
+                        zoom={12}
                     center={Centre}
                     containerElement={
                         <div style={{height: `100%`}}/>
@@ -85,9 +86,9 @@ class Test extends Component {
                         <div style={{height: `100%`}}/>
                     }
                     coords={this.state.coords}
-                />*/}
-                {/*</div>*/}
-                <FusionCharts url={this.state.URL}/>
+                    />
+                </div>
+                {/* <FusionCharts url={this.state.URL}/>*/}
 
             </div>
 

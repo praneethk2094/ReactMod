@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {Chart} from 'react-google-charts';
-import {Bar} from 'react-chartjs-2';
+import {Bar, Pie} from 'react-chartjs-2';
 
 class NewChart extends Component {
 
@@ -12,7 +12,7 @@ class NewChart extends Component {
         }
     }
 
-    componentWillMount() {
+    componentDidMount() {
 
         this.setState({
             chartData: {
@@ -21,7 +21,7 @@ class NewChart extends Component {
                     {
                         label: this.props.name,
                         data: this.props.data,
-                        backgroundColor: ['rgba(255,255,255,0.6)']
+                        backgroundColor: ['rgba(255,32,135,0.6)']
                     }
                 ]
             }
@@ -32,6 +32,7 @@ class NewChart extends Component {
         console.log(this.props.labels, "volume: ", this.props.data);
         return (
             <div>
+
                 <Bar
                     data={this.state.chartData}
                     width={100}
