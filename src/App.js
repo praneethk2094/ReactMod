@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import './App.css';
-import VehicleApp from './Components/VehicleListApp/VehicleApp';
-/*import {Link} from 'react-router-dom';*/
-import Test from './Components/Views/Test';
-import VehicleList from "./Components/VehicleList/VehicleList";
+/*import VehicleApp from './Components/VehicleListApp/VehicleApp';
+/!*import {Link} from 'react-router-dom';*!/
+import Test from './Components/Views/Test';*/
+import VehicleApp from "./Components/VehicleListApp/VehicleApp";
+import FusionCharts from './Components/Views/FusionCharts';
+import Test from "./Components/Views/Test";
+import NewChart from "./Components/Chart/NewChart";
 class App extends Component {
     render() {
         console.log("into app")
@@ -15,6 +18,7 @@ class App extends Component {
                 </div>
                 <div className="App-body">
                     <VehicleApp/>
+
 
                 </div>
 

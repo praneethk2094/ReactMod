@@ -23,6 +23,7 @@ class VehicleApp extends Component {
         axios.get(vehicleURL)
             .then(function (response) {
                 if (response.data) {
+                    console.log(response.data);
                     self.setState({
                         vehicleList: response.data
                     })
