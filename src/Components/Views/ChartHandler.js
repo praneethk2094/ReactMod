@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 
 import axios from 'axios';
 import Charts from "./Charts";
-import NewChart from "./../Chart/NewChart";
+import NewChart from "../Chart/Chart";
 import {Dropdown, DropdownToggle, DropdownMenu, DropdownItem, Button} from 'reactstrap';
 
 class FusionCharts extends Component {

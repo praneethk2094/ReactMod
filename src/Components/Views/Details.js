@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 //import {Link} from 'react-router-dom';
 import axios from 'axios';
 import Tracker from './Tracker';
-import FusionCharts from './FusionCharts';
+import FusionCharts from './ChartHandler';
 
 
 class Test extends Component {

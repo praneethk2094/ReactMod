@@ -7,7 +7,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 /*import {Router,Route,IndexRoute,Link} from 'react-router';*/
 import {BrowserRouter, Switch, Route} from 'react-router-dom'
 import VehicleApp from './Components/VehicleListApp/VehicleApp';
-import Test from './Components/Views/Test';
+import Test from './Components/Views/Details';
 
 ReactDOM.render((
 

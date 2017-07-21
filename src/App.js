@@ -5,9 +5,9 @@ import './App.css';
 /!*import {Link} from 'react-router-dom';*!/
 import Test from './Components/Views/Test';*/
 import VehicleApp from "./Components/VehicleListApp/VehicleApp";
-import FusionCharts from './Components/Views/FusionCharts';
-import Test from "./Components/Views/Test";
-import NewChart from "./Components/Chart/NewChart";
+import FusionCharts from './Components/Views/ChartHandler';
+import Test from "./Components/Views/Details";
+import NewChart from "./Components/Chart/Chart";
 class App extends Component {
     render() {
         console.log("into app")
