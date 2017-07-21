@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import './App.css';
 import AlertModal from './Components/Modals/AlertModal'
-import VehicleApp from './Components/VehicleListApp/VehicleApp';
+import VehicleApp from './Components/Vehicle/VehicleApp';
 import PieC from './Components/PieChart/OldPieChart';
 import PieChartJS from './Components/PieChart/PieChartJS';
 

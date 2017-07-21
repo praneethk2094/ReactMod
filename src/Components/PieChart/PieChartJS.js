@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, {Component} from "react";
-import {Pie} from 'react-chartjs-2';
+import {Pie, Bar} from 'react-chartjs-2';
 import AlertModal from "../Modals/AlertModal";
 import './PieC.css';
 
@@ -19,14 +19,14 @@ class PieChartJS extends Component {
                 datasets: [{
                     data: [0, 0, 0],
                     backgroundColor: [
-                        '#FF6384',
-                        '#36A2EB',
-                        '#FFCE56'
+                        '#ED0404',
+                        '#ed9b04',
+                        '#04ED55'
                     ],
                     hoverBackgroundColor: [
-                        '#FF6384',
-                        '#36A2EB',
-                        '#FFCE56'
+                        '#ED0404',
+                        '#ed9b04',
+                        '#04ED55'
                     ]
                 }]
 
@@ -62,13 +62,13 @@ class PieChartJS extends Component {
                                         data: [response.data.highAlert, response.data.mediumAlert, response.data.lowAlert],
                                         backgroundColor: [
                                             '#ED0404',
-                                            '#36A2EB',
-                                            '#FFCE56'
+                                            '#ed9b04',
+                                            '#04ED55'
                                         ],
                                         hoverBackgroundColor: [
                                             '#ED0404',
-                                            '#36A2EB',
-                                            '#FFCE56'
+                                            '#ed9b04',
+                                            '#04ED55'
                                         ]
                                     }]
 
@@ -92,7 +92,8 @@ class PieChartJS extends Component {
 
         return (
             <div className="pieChart">
-                <div>Vehicle Historical Alerts</div>
+                <h1 className="heading">Vehicle Historical Alerts</h1>
+                <hr></hr>
                 <Pie data={this.state.data}/>
                 <AlertModal vin={this.props.match.params.number}/>
             </div>

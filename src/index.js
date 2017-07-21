@@ -5,9 +5,14 @@ import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 import 'bootstrap/dist/css/bootstrap.css';
 /*import {Router,Route,IndexRoute,Link} from 'react-router';*/
-import {BrowserRouter, Switch, Route} from 'react-router-dom'
+import {BrowserRouter, Switch, Route} from 'react-router-dom';
 import AlertModal from './Components/Modals/AlertModal';
-import PieChartJS from './Components/PieChart/PieChartJS'
+import PieChartJS from './Components/PieChart/PieChartJS';
+import './index.css';
+import 'bootstrap/dist/css/bootstrap.css';
+/*import {Router,Route,IndexRoute,Link} from 'react-router';*/
+import {BrowserRouter, Switch, Route} from 'react-router-dom'
+
 
 ReactDOM.render((
 
@@ -15,10 +20,9 @@ ReactDOM.render((
 
         <Switch>
             <Route exact path='/' component={App}/>
-            {/* both /roster and /roster/:number begin with /roster */}
 
-            {/*    <Route path='/list/:number' component={AlertModal}/>*/}
-            <Route path='/list/:number' component={PieChartJS}/>
+            <Route path='/list/:number' component={Details}/>
+            {/*     <Route path='/list/:number' component={PieChartJS}/>*/}
 
         </Switch>
     </BrowserRouter>

@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import axios from 'axios';
-import VehicleList from './../VehicleList/VehicleList';
+import VehicleList from './VehicleList';
 import PieC from "../PieChart/OldPieChart";
 
 class VehicleApp extends Component {
