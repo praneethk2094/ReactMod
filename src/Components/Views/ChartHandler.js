@@ -1,11 +1,10 @@
 import React, {Component} from 'react';
 
 import axios from 'axios';
-import Charts from "./Charts";
 import NewChart from "../Chart/Chart";
 import {Dropdown, DropdownToggle, DropdownMenu, DropdownItem, Button} from 'reactstrap';
 
-class FusionCharts extends Component {
+class ChartHandler extends Component {
     constructor() {
         super();
         this.state = {
@@ -14,7 +13,8 @@ class FusionCharts extends Component {
             vehicleList: null,
             date: null,
             flag: true,
-            dropdownOpen: false
+            dropdownOpen: false,
+            dropdownName: "Select"
         }
     }
 
@@ -41,7 +41,8 @@ class FusionCharts extends Component {
     handleDropdownSelect(event) {
         console.log("event", event.target.value);
         this.setState({
-            dropdown: event.target.value
+            dropdown: event.target.value,
+            dropdownName: event.target.value
         })
     }
 
@@ -173,10 +174,10 @@ class FusionCharts extends Component {
                     .catch(function (error) {
                         console.log(error);
                     });
-            }, 3000);
+            }, 10000);
         }
 
     }
 }
 
-export default FusionCharts;
+export default ChartHandler;

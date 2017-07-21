@@ -2,10 +2,10 @@ import React, {Component} from 'react';
 //import {Link} from 'react-router-dom';
 import axios from 'axios';
 import Tracker from './Tracker';
-import FusionCharts from './ChartHandler';
+import ChartHandler from './ChartHandler';
 
 
-class Test extends Component {
+class Details extends Component {
     constructor() {
         super();
         this.state = {
@@ -24,7 +24,7 @@ class Test extends Component {
         console.log(VinValue);
         if (VinValue) {
             const veURL = `http://localhost:8080/api/vreads/${VinValue}`;
-
+            console.log(veURL);
             setInterval(function () {
                 axios.get(veURL)
                     .then(function (response) {
@@ -45,7 +45,7 @@ class Test extends Component {
                     .catch(function (error) {
                         console.log(error);
                     });
-            }, 3000);
+            }, 300000);
         }
 
     }
@@ -88,7 +88,8 @@ class Test extends Component {
                     coords={this.state.coords}
                     />
                 </div>
-                {/* <FusionCharts url={this.state.URL}/>*/}
+                
+                {/* <ChartHandler url={this.state.URL}/>*/}
 
             </div>
 
@@ -98,4 +99,4 @@ class Test extends Component {
 
 }
 
-export default Test;
+export default Details;

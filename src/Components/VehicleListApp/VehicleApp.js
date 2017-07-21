@@ -33,7 +33,7 @@ class VehicleApp extends Component {
                 .catch(function (error) {
                     console.log(error);
                 });
-        }, 10000);
+        }, 300000);
     }
 
     render() {

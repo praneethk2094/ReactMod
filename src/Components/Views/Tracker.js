@@ -26,9 +26,8 @@ class Tracker extends Component {
                     path={cordinate}
                     key={Date.now() + Math.random()}
                     options={{
-                        strokeColor: '#babfc7',
-                        strokeOpacity: 0.28,
-                        strokeWeight: 1,
+                        //   strokeColor: '#4da543',
+                        //   strokeWeight: 2,
                     }}
                 />
                 <Marker
