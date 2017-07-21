@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table';
+import {Link} from 'react-router-dom';
 
 class VehicleList extends Component {
 
@@ -16,14 +17,19 @@ class VehicleList extends Component {
 
         let VehicleItems = this.props.vehicles;
 
-        function showDescription(cell, row) {
-            return cell.description;
+        function LinkedName(cell, row) {
+            return <a href={`/list/${row.vin}`}>{cell}</a>;
         }
+
+        console.log("2. VehicleList.js");
 
         return (
 
-            <BootstrapTable data={VehicleItems} options={this.options} bordered={true} striped={true}>
-                <TableHeaderColumn width="190" isKey dataField="vin" headerAlign='center' dataAlign='center'>Vehicle
+            <BootstrapTable data={VehicleItems} options={this.options} bordered={true} striped={true} pagination>
+
+
+                <TableHeaderColumn width="190" isKey dataField="vin" dataFormat={LinkedName} headerAlign='center'
+                                   dataAlign='center'>Vehicle
                     Number</TableHeaderColumn>
                 <TableHeaderColumn width="190" dataField="make" headerAlign='center'
                                    dataAlign='center'>Make</TableHeaderColumn>
