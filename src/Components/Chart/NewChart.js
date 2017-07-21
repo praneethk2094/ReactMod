@@ -13,16 +13,15 @@ class NewChart extends Component {
     }
 
     componentWillMount() {
+
         this.setState({
             chartData: {
                 labels: this.props.labels,
                 datasets: [
                     {
-                        label: 'populaiton',
+                        label: this.props.name,
                         data: this.props.data,
-                        backgroundColor: [
-                            'rgba(255,99,132,0.6)'
-                        ]
+                        backgroundColor: ['rgba(255,255,255,0.6)']
                     }
                 ]
             }
@@ -37,9 +36,18 @@ class NewChart extends Component {
                     data={this.state.chartData}
                     width={100}
                     height={50}
-                    /* options={{
-                         maintainAspectRatio: false
-                     }}*/
+                    options={{
+                        title: {
+                            display: true,
+                            text: this.props.name + ' Vs Time Chart'
+                            //  fontSize:28
+                        },
+                        legend: {
+                            display: true,
+                            position: 'right'
+                        }
+                    }
+                    }
                 />
             </div>
         );

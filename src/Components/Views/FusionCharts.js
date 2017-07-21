@@ -61,13 +61,49 @@ class FusionCharts extends Component {
             console.log("in function");
             var time = [];
             var volume = [];
-            VehicleReadings = this.state.vehicleList.map(v => {
-                time.push(this.handletime(v.timestamp));
-                volume.push(v.fuelVolume);
+            //   var selection=parseInt(this.state.dropdown);
+            switch (this.state.dropdown) {
+                case "Fuel Volume":
+                    console.log("selection 1");
+                    VehicleReadings = this.state.vehicleList.map(v => {
+                        time.push(this.handletime(v.timestamp));
+                        volume.push(v.fuelVolume);
 
-            })
+                    })
+                    break;
+                case "Speed":
+                    console.log("selection 2");
+                    VehicleReadings = this.state.vehicleList.map(v => {
+                        time.push(this.handletime(v.timestamp));
+                        volume.push(v.speed);
+
+                    })
+                    break;
+                case "Engine HP":
+                    console.log("selection 3");
+                    VehicleReadings = this.state.vehicleList.map(v => {
+                        time.push(this.handletime(v.timestamp));
+                        volume.push(v.engineHp);
+
+                    })
+                    break;
+                case "Engine RPM":
+                    console.log("selection 4");
+                    VehicleReadings = this.state.vehicleList.map(v => {
+                        time.push(this.handletime(v.timestamp));
+                        volume.push(v.engineRpm);
+
+                    })
+                    break;
+
+            }
+            /* VehicleReadings = this.state.vehicleList.map(v => {
+                 time.push(this.handletime(v.timestamp));
+                 volume.push(v.fuelVolume);
+
+             })*/
             return (
-                <NewChart labels={time} data={volume}/>
+                <NewChart labels={time} data={volume} name={this.state.dropdown}/>
             )
 
         }
@@ -90,17 +126,22 @@ class FusionCharts extends Component {
                         Dropdown
                     </DropdownToggle>
                     <DropdownMenu>
-                        <DropdownItem onClick={this.handleDropdownSelect.bind(this)} value={1}>Fuel
+                        <DropdownItem onClick={this.handleDropdownSelect.bind(this)} value={"Fuel Volume"}>Fuel
                             Volume</DropdownItem>
-                        <DropdownItem onClick={this.handleDropdownSelect.bind(this)} value={2}>Speed</DropdownItem>
+                        <DropdownItem onClick={this.handleDropdownSelect.bind(this)}
+                                      value={"Speed"}>Speed</DropdownItem>
                         <DropdownItem header>Engine Properties</DropdownItem>
-                        <DropdownItem onClick={this.handleDropdownSelect.bind(this)} value={3}>Engine HP</DropdownItem>
-                        <DropdownItem onClick={this.handleDropdownSelect.bind(this)} value={4}>Engine RPM</DropdownItem>
+                        <DropdownItem onClick={this.handleDropdownSelect.bind(this)} value={"Engine HP"}>Engine
+                            HP</DropdownItem>
+                        <DropdownItem onClick={this.handleDropdownSelect.bind(this)} value={"Engine RPM"}>Engine
+                            RPM</DropdownItem>
                         <DropdownItem divider/>
                     </DropdownMenu>
                 </Dropdown>
                 <Button color="primary" onClick={this.handleButton.bind(this)}>primary</Button>
-                {VehicleReadings}
+                <div>
+                    {VehicleReadings}
+                </div>
             </div>
         );
 
