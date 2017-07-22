@@ -1,0 +1,50 @@
+.Display-header {
+    background-color: darkslategray;
+    height: 50vh;
+    width: 60vw;
+    text-align: center;
+    padding: 20px;
+    color: black;
+}
+
+.Display-map {
+    background-color: red;
+    position: relative;
+    height: 50vh;
+    width: 100vw;
+    color: red;
+}
+
+.Display-piechart {
+    background-color: blue;
+    position: absolute;
+    left: 20px;
+    width: 200px;
+    height: 40vh;
+    width: 60vw;
+    padding: 20px;
+    color: blue;
+}
+
+.Display-button {
+    background-color: darkslategray;
+    position: relative;
+    text-align: center;
+
+    height: 50vh;
+    width: 40vw;
+    padding: 20px;
+}
+
+#container {
+    display: flex; /* establish flex container */
+    flex-direction: row; /* default value; can be omitted */
+    flex-wrap: nowrap; /* default value; can be omitted */
+    justify-content: space-between; /* switched from default (flex-start, see below) */
+
+}
+
+#container > div {
+    width: 50vw;
+    height: 50vh;
+}
