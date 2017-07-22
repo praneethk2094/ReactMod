@@ -19,11 +19,7 @@ class AlertCount extends Component {
 
         let alertItems = this.props.alerts;
 
-        /* function LinkedName(cell, row) {
-             return <a href={`/list/${row.vin}`}>{cell}</a>;
-         }*/
         function dateFormatter(cell, row) {
-            console.log(row.timestamp);
             let serviceDate = row.timestamp;
             let dateFormat = require('dateformat');
             let formatDate = dateFormat(serviceDate);

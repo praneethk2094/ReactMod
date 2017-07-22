@@ -6,12 +6,12 @@ import registerServiceWorker from './registerServiceWorker';
 import 'bootstrap/dist/css/bootstrap.css';
 /*import {Router,Route,IndexRoute,Link} from 'react-router';*/
 import {BrowserRouter, Switch, Route} from 'react-router-dom';
-import AlertModal from './Components/Modals/AlertModal';
-import PieChartJS from './Components/PieChart/PieChartJS';
+
 import './index.css';
 import 'bootstrap/dist/css/bootstrap.css';
-/*import {Router,Route,IndexRoute,Link} from 'react-router';*/
-import {BrowserRouter, Switch, Route} from 'react-router-dom'
+import Details from './Components/Views/Details';
+
+
 
 
 ReactDOM.render((
@@ -22,7 +22,7 @@ ReactDOM.render((
             <Route exact path='/' component={App}/>
 
             <Route path='/list/:number' component={Details}/>
-            {/*     <Route path='/list/:number' component={PieChartJS}/>*/}
+
 
         </Switch>
     </BrowserRouter>

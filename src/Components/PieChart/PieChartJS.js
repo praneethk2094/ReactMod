@@ -43,9 +43,9 @@ class PieChartJS extends Component {
 
     componentDidMount() {
         var self = this;
-        var vin = this.props.match.params.number;
+        var vin = this.props.vin;
         if (vin) {
-            const vehicleURL = `http://localhost:8080/find/vehicles/${vin}`;
+            const vehicleURL = `http://localhost:8080/api/vehicles/find/${vin}`;
             setInterval(function () {
 
                 axios.get(vehicleURL)
@@ -54,9 +54,9 @@ class PieChartJS extends Component {
                             self.setState({
 
                                 data: {
-                                    labels: ['High Alerts',
-                                        'Medium Alerts',
-                                        'Low Alerts'
+                                    labels: ['High',
+                                        'Medium',
+                                        'Low'
                                     ],
                                     datasets: [{
                                         data: [response.data.highAlert, response.data.mediumAlert, response.data.lowAlert],
@@ -80,7 +80,7 @@ class PieChartJS extends Component {
                     .catch(function (error) {
                         console.log(error);
                     });
-                console.log("inside");
+
 
             }, 1000);
         }
@@ -95,7 +95,7 @@ class PieChartJS extends Component {
                 <h1 className="heading">Vehicle Historical Alerts</h1>
                 <hr></hr>
                 <Pie data={this.state.data}/>
-                <AlertModal vin={this.props.match.params.number}/>
+                <AlertModal vin={this.props.vin}/>
             </div>
         );
     }

@@ -11,10 +11,9 @@ import AlertCount from './../Alerts/AlertCount';
 import axios from 'axios';
 
 
-class AlertModal extends React.Component {
+class AlertModal extends Component {
     state = {
         isOpen: false,
-        isSubOpen: false
     };
     openModal = () => {
         this.setState({
@@ -41,14 +40,13 @@ class AlertModal extends React.Component {
         if (vin) {
             setInterval(function () {
 
-                const alertURL = `http://localhost:8080/Alerts/${vin}`;
+                const alertURL = `http://localhost:8080/api/alerts/${vin}`;
                 axios.get(alertURL)
                     .then(function (response) {
                         if (response.data) {
 
                             self.setState({
                                 alertList: response.data
-                                // vehicleData: list[list.length-1]
                             })
                         }
 
@@ -62,15 +60,7 @@ class AlertModal extends React.Component {
     }
 
     render() {
-        let subModalDialogStyles = {
-            base: {
-                bottom: -600,
-                transition: 'bottom 0.4s'
-            },
-            open: {
-                bottom: 0
-            }
-        };
+
         console.log("4.AlertModal.js");
         return (
             <div className='layout-page'>

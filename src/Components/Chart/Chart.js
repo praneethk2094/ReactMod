@@ -1,8 +1,9 @@
 import React, {Component} from 'react';
-import {Chart} from 'react-google-charts';
-import {Bar, Pie} from 'react-chartjs-2';
 
-class NewChart extends Component {
+
+import {Bar} from 'react-chartjs-2';
+
+class Chart extends Component {
 
     constructor(props) {
         super(props);
@@ -13,15 +14,21 @@ class NewChart extends Component {
     }
 
     componentDidMount() {
-
+        var i = this.props.labels.length;
+        var colors = [];
+        while (i !== 0) {
+            colors.push('rgba(70,191,63,0.6)');
+            i--;
+        }
         this.setState({
+            isOpen: true,
             chartData: {
                 labels: this.props.labels,
                 datasets: [
                     {
                         label: this.props.name,
                         data: this.props.data,
-                        backgroundColor: ['rgba(255,32,135,0.6)']
+                        backgroundColor: colors
                     }
                 ]
             }
@@ -29,31 +36,30 @@ class NewChart extends Component {
     }
 
     render() {
-        console.log(this.props.labels, "volume: ", this.props.data);
+        console.log(this.props.labels, "volume: ", this.props.data, this.state.isOpen);
         return (
-            <div>
 
-                <Bar
-                    data={this.state.chartData}
-                    width={100}
-                    height={50}
-                    options={{
-                        title: {
-                            display: true,
-                            text: this.props.name + ' Vs Time Chart'
-                            //  fontSize:28
-                        },
-                        legend: {
-                            display: true,
-                            position: 'right'
-                        }
+            <Bar
+                data={this.state.chartData}
+                width={100}
+                height={50}
+                options={{
+                    title: {
+                        display: true,
+                        text: this.props.name + ' Vs Time Chart'
+                        //  fontSize:28
+                    },
+                    legend: {
+                        display: true,
+                        position: 'right'
                     }
-                    }
-                />
-            </div>
+                }
+                }
+            />
+
         );
     }
 
 }
 
-export default NewChart;
+export default Chart;

@@ -1,8 +1,10 @@
 import React, {Component} from 'react';
+import './Display.css'
 import axios from 'axios';
 import Tracker from './Tracker';
 import ChartHandler from './ChartHandler';
 import PieChartJS from "../PieChart/PieChartJS";
+import Background from './../../Images/background.jpeg'
 
 
 class Details extends Component {
@@ -12,16 +14,16 @@ class Details extends Component {
             flag: true,
             vehicleData: null,
             coords: [],
-            URL: null
+            URL: null,
+            vin: null
         }
     }
 
     componentDidMount() {
         var self = this;
-        console.log('-->Trigerring Test component will mount');
+
         var list = [];
         var VinValue = this.props.match.params.number;
-        console.log(VinValue);
         if (VinValue) {
             const veURL = `http://localhost:8080/api/vreads/${VinValue}`;
             console.log(veURL);
@@ -30,14 +32,14 @@ class Details extends Component {
                     .then(function (response) {
                         if (response.data) {
 
-                            // console.log("response data", response.data);
                             response.data.map(v => {
                                 list.push({lat: v.latitude, lng: v.longitude})
                             })
                             self.setState({
                                 coords: list,
                                 URL: veURL,
-                                vehicleData: list[list.length - 1]
+                                vehicleData: list[list.length - 1],
+
                             })
                         }
 
@@ -45,24 +47,31 @@ class Details extends Component {
                     .catch(function (error) {
                         console.log(error);
                     });
-            }, 300000);
+            }, 1000);
         }
 
     }
 
     render() {
-        console.log("trigerred test render", this.state.vehicleData);
+        var divStyle = {
+            backgroundImage: 'url(' + Background + ')',
+            backgroundSize: 800
+        }
         var Centre = this.state.vehicleData || {lat: 0, lng: 0};
-        console.log(this.state.coords);
 
 
         return (
             <div>
+                <div id="container">
+                    <div className="Display-header">
+                        <PieChartJS vin={this.props.match.params.number}/>
+                    </div>
+                    <div className="Display-button" style={divStyle}>
+                        <ChartHandler url={this.state.URL}/>
+                    </div>
+                </div>
 
-                <div style={{width: window.innerWidth, height: 400, background: 'red'}}>
-                    {/*<p> This is test page {this.props.match.params.number}</p>*/}
-
-
+                <div className="Display-map">
                     <Tracker
                         zoom={12}
                         center={Centre}
@@ -76,10 +85,8 @@ class Details extends Component {
                     />
                 </div>
 
-                {/* <ChartHandler url={this.state.URL}/>*/}
-                <PieChartJS/>
-
             </div>
+
 
         );
     }

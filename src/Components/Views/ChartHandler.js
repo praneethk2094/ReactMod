@@ -1,29 +1,27 @@
 import React, {Component} from 'react';
-
+import {
+    Modal,
+    ModalHeader,
+    ModalTitle,
+    ModalClose,
+    ModalBody,
+    ModalFooter
+} from 'react-modal-bootstrap';
 import axios from 'axios';
-import Charts from "./Charts";
-import NewChart from "../Chart/Chart";
+import Chart from "../Chart/Chart";
 import {Dropdown, DropdownToggle, DropdownMenu, DropdownItem, Button} from 'reactstrap';
 
 class FusionCharts extends Component {
-    constructor() {
-        super();
-        this.state = {
-            dropdown: null,
-            button: false,
-            vehicleList: null,
-            date: null,
-            flag: true,
-            dropdownOpen: false
-        }
-    }
-
-    handledate(event) {
-        console.log("handle date called", event.target.value);
+    openModal = () => {
         this.setState({
-            date: event.target.value
-        })
-    }
+            isOpen: true
+        });
+    };
+    hideModal = () => {
+        this.setState({
+            isOpen: false
+        });
+    };
 
     handletime(timestamp) {
 
@@ -38,33 +36,54 @@ class FusionCharts extends Component {
         });
     }
 
-    handleDropdownSelect(event) {
-        console.log("event", event.target.value);
+    constructor() {
+        super();
+        this.state = {
+            dropdown: null,
+            button: false,
+            vehicleList: null,
+            date: null,
+            flag: true,
+            dropdownOpen: false,
+            selection: "Select",
+            isOpen: false
+        }
+    }
+
+    handledate(event) {
+
         this.setState({
-            dropdown: event.target.value
+            date: event.target.value
+        })
+    }
+
+    handleDropdownSelect(event) {
+
+        this.setState({
+            dropdown: event.target.value,
+            selection: event.target.value
         })
     }
 
     handleButton(event) {
-        console.log("event", event.target.value);
+
         this.setState({
             button: !this.state.button,
             flag: true
         })
     }
 
-
     render() {
 
         let VehicleReadings;
         if (this.state.vehicleList) {
-            console.log("in function");
+
             var time = [];
             var volume = [];
-            //   var selection=parseInt(this.state.dropdown);
+
             switch (this.state.dropdown) {
                 case "Fuel Volume":
-                    console.log("selection 1");
+
                     VehicleReadings = this.state.vehicleList.map(v => {
                         time.push(this.handletime(v.timestamp));
                         volume.push(v.fuelVolume);
@@ -72,7 +91,7 @@ class FusionCharts extends Component {
                     })
                     break;
                 case "Speed":
-                    console.log("selection 2");
+
                     VehicleReadings = this.state.vehicleList.map(v => {
                         time.push(this.handletime(v.timestamp));
                         volume.push(v.speed);
@@ -80,7 +99,7 @@ class FusionCharts extends Component {
                     })
                     break;
                 case "Engine HP":
-                    console.log("selection 3");
+
                     VehicleReadings = this.state.vehicleList.map(v => {
                         time.push(this.handletime(v.timestamp));
                         volume.push(v.engineHp);
@@ -88,7 +107,7 @@ class FusionCharts extends Component {
                     })
                     break;
                 case "Engine RPM":
-                    console.log("selection 4");
+
                     VehicleReadings = this.state.vehicleList.map(v => {
                         time.push(this.handletime(v.timestamp));
                         volume.push(v.engineRpm);
@@ -97,32 +116,39 @@ class FusionCharts extends Component {
                     break;
 
             }
-            /* VehicleReadings = this.state.vehicleList.map(v => {
-                 time.push(this.handletime(v.timestamp));
-                 volume.push(v.fuelVolume);
-             })*/
+
             return (
-                <NewChart labels={time} data={volume} name={this.state.dropdown}/>
+                <div>
+                    <div>
+                        <Modal isOpen={this.state.isOpen} size='modal-lg' onRequestHide={this.hideModal}>
+
+                            <ModalBody>
+
+                                <Chart labels={time} data={volume} name={this.state.dropdown}/>
+                            </ModalBody>
+                            <ModalFooter>
+                                <button className='btn btn-primary' onClick={this.hideModal()}>
+                                    Close
+                                </button>
+
+
+                            </ModalFooter>
+                        </Modal>
+                    </div>
+                </div>
             )
 
         }
 
         return (
             <div>
-                {/*<div style={{width: 600, height: 400, background: 'blue'}}>*/}
-                <input type="datetime-local" onChange={this.handledate.bind(this)}/>
+                From <input type="datetime-local" onChange={this.handledate.bind(this)}/><br/>
 
-                <Dropdown isOpen={this.state.dropdownOpen}
+                Of <Dropdown isOpen={this.state.dropdownOpen}
                           toggle={this.toggle.bind(this)}
-
                 >
-                    <DropdownToggle caret
-                                    data-toggle="dropdown"
-                                    aria-haspopup={true}
-                                    color="#ff0000"
-
-                    >
-                        Dropdown
+                <DropdownToggle caret>
+                    {this.state.selection}
                     </DropdownToggle>
                     <DropdownMenu>
                         <DropdownItem onClick={this.handleDropdownSelect.bind(this)} value={"Fuel Volume"}>Fuel
@@ -136,8 +162,8 @@ class FusionCharts extends Component {
                             RPM</DropdownItem>
                         <DropdownItem divider/>
                     </DropdownMenu>
-                </Dropdown>
-                <Button color="primary" onClick={this.handleButton.bind(this)}>primary</Button>
+            </Dropdown><br/><br/>
+                <Button color="primary" onClick={this.handleButton.bind(this)}>Chart It!!</Button>
                 <div>
                     {VehicleReadings}
                 </div>
@@ -150,7 +176,7 @@ class FusionCharts extends Component {
     componentWillUpdate(nextProps, nextState) {
 
         console.log("date", nextState.date);
-        if (nextState.button != this.state.button && nextState.flag) {
+        if (nextState.button != this.state.button && nextState.flag && nextState.flag) {
             var self = this;
             console.log('-->Trigerring component did Mount');
             const url = this.props.url.concat("?time=" + nextState.date);

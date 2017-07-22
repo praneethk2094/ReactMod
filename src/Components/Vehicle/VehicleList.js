@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table';
-import {Link} from 'react-router-dom';
+
 
 class VehicleList extends Component {
 
@@ -21,7 +21,6 @@ class VehicleList extends Component {
             return <a href={`/list/${row.vin}`}>{cell}</a>;
         }
 
-        console.log("2. VehicleList.js");
 
         return (
 
